@@ -33,7 +33,7 @@ export default function Home() {
     <div>
       <header className="cabecera">
         {/* Contenedor relativo para que los botones posicionados absolutamentes funcionen */}
-        <div id="imagen-cabecera" className="relative w-[800px] h-[300px] overflow-hidden">
+        <div id="imagen-cabecera" className="relative w-full h-[60vh] overflow-hidden">
           {images.map((src, i) => (
             <div
               key={i}
@@ -42,11 +42,17 @@ export default function Home() {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '800px',
-                height: '300px',
+                width: '100%',
+                height: '100%',
               }}
             >
-              <Image src={src} alt={`Imagen ${i}`} width={800} height={300} priority />
+              <Image 
+                src={src} 
+                alt={`Imagen ${i}`} 
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
             </div>
           ))}
 
@@ -91,7 +97,7 @@ export default function Home() {
       </header>
 
       <nav className="barra-navegacion">
-        <ul className="flex gap-4">
+        <ul className="gap-4">
           <li><a href="#">⛪Ayuntamiento⛪</a></li>
           <li><a href="/pueblo">🏡El Pueblo🏡</a></li>
           <li><a href="#">🧰Servicios🧰</a></li>

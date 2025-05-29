@@ -11,7 +11,10 @@ html, body {
   color: #333;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: #ffedd5;
+  width: 100vw;
+  overflow-x: hidden;
 }
+
 
 main {
   flex: 1;
@@ -21,23 +24,21 @@ main {
 .cabecera {
   position: relative;
   text-align: center;
-  width: 100%;
+  width: 100vw;
 }
 
 #imagen-cabecera {
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 100vw;
+  width: 100%;
   max-width: 100%;
   overflow: hidden;
-  position:relative;
-  height:"309px"
+  position: relative;
 }
 
 #imagen-cabecera li {
   position: absolute;
-  width: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
@@ -48,7 +49,7 @@ main {
 }
 
 #imagen-cabecera li img {
-  width: 100vw;
+  width:"100vw";
   height: auto;
   display: block;
 }
