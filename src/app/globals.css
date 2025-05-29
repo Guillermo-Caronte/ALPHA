@@ -1,112 +1,283 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-:root {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: white) {
-  :root {
-    --background: #ededed;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.sidebar {
-  position: fixed;
-  top: 57px;
-  left: 0;
-  width: 250px;
-  height: 85.5%;
-  background-color: white;
-  color: black;
-  padding: 20px;
+/* --- Reset y layout base --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  border-right: 2px solid #ddd;
-  box-shadow: 4px 0px 8px -2px #978b8b;
-}
-
-.search-input {
-  width: 100%;
-  padding: 10px 20px 10px 50px;  /* Agrega espacio extra a la izquierda para la imagen */
-  background-image: url('/images/buscar.png');
-  background-repeat: no-repeat;
-  background-position:7px center;  /* Alinea la imagen en el centro vertical y en la izquierda */
-  background-size: 35px 30px;  /* Tamaño de la imagen */
-  border-radius: 5px;
-  font-size: 16px;
-}
-.search-input::placeholder{
-  color:black;
-}
-
-.menu {
-  list-style: none;
-  padding: 0;
-}
-
-.menu ul {
-  list-style: none;
-  padding: 0;
-}
-
-.menu li {
-  margin: 15px 0;
-}
-
-.menu li a {
-  color: black;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 10px 0;
-  display: flex;
-  gap:15px;
-  align-items: center;
-  padding-left: 10px;
-  border-radius: 5px;
-}
-.search-input:hover{
-  background-color: #FFE9E9;
-}
-.menu li a:hover {
-  background-color: #FFE9E9;
-}
-
-/* Ajustar el contenido para que no quede detrás del menú lateral */
-body {
-  display: flex;
+  color: #333;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #ffedd5;
 }
 
 main {
-  margin-left: 250px; /* Deja espacio para el menú lateral */
-  padding: 20px;
-  width: calc(100% - 250px); /* Asegura que el contenido no se desborde */
-} 
+  flex: 1;
+}
 
-.cosa1 {
-  align-items: center;
+/* --- Cabecera con imagen rotatoria --- */
+.cabecera {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+#imagen-cabecera {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+  position:relative;
+  height:"309px"
+}
+
+#imagen-cabecera li {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+#imagen-cabecera li.visible {
+  position: relative;
+  opacity: 1;
+}
+
+#imagen-cabecera li img {
+  width: 100vw;
+  height: auto;
+  display: block;
+}
+
+.next, .before {
+  position: absolute;
+  top: 50%;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.next:hover, .before:hover {
+  opacity: 1;
+}
+
+.next {
+  left: 97%;
+}
+
+.before {
+  right: 97%;
+}
+
+/* --- Título centrado sobre imagen --- */
+.titulo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  text-shadow: 2px 2px 5px #000;
+  transform: translate(-50%, -50%);
+}
+
+.imagen-titulo {
+  width: 100%;
+}
+
+/* --- Barras de navegación --- */
+.barra-navegacion, .barra-inferior {
+  background-color: #9b7654;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.barra-navegacion ul, .barra-inferior ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.barra-navegacion li, .barra-inferior li {
+  display: inline;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.barra-navegacion a {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.barra-inferior a {
+  color: white;
+  text-decoration: none;
+}
+
+.barra-navegacion {
+  margin-top: -5px; /* No hay clase tailwind para esto */
+}
+
+/* --- Sección de bloques principales --- */
+.bloques-principales {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2.5rem 1.25rem;
+  background-color: #fed7aa; /* bg-orange-100 */
+}
+
+.bloque {
+  width: 13rem; /* w-52 */
+  margin: 1.25rem;
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #d8c9a3;
+  border-radius: 0.5rem;
+  background-color: #fffef6;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+.bloque img {
+  width: 6rem;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.bloque h3 a {
+  color: #2563eb; /* text-blue-600 */
+  text-decoration: none;
+}
+
+/* --- Sección de noticias --- */
+.seccion-noticias {
+  padding: 2.5rem 1.25rem;
+  text-align: center;
+  background-color: #fed7aa;
+}
+
+.seccion-noticias h2 {
+  color: #9b7654;
+  margin-bottom: 2rem;
+}
+
+.contenedor-noticias {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1024px;
   margin-left: auto;
+  margin-right: auto;
 }
 
-.cosaGrande {
-  display:flex;
+.noticia {
+  width: 18rem;
+  background-color: #fffef6;
+  border: 1px solid #d8c9a3;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  text-align: left;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
 }
 
-.imagen{
-  margin-left:35px;
+.noticia h3 {
+  color: #9b7654;
+  margin-top: 0;
+}
+
+.noticia .fecha {
+  color: #6b7280; /* text-gray-500 */
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+}
+
+.noticia p {
+  margin: 0.5rem 0;
+  line-height: 1.625;
+}
+
+.leer-mas {
+  display: inline-block;
+  color: #9b7654;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  font-weight: 700;
+}
+
+.leer-mas:hover {
+  text-decoration: underline;
+}
+
+/* --- Pie de página --- */
+.pie {
+  background-color: #9b7654;
+  color: white;
+  text-align: center;
+}
+
+/* --- Página "El Pueblo" --- */
+.historia-contenido {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.seccion-historia {
+  background-color: white;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+.seccion-historia h2 {
+  color: #9b7654;
+  border-bottom: 2px solid #9b7654;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.seccion-historia p {
+  line-height: 1.625;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.galeria-imagenes {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.galeria-imagenes img {
+  width: 100%;
+  height: 13rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.galeria-imagenes img:hover {
+  transform: scale(1.05);
+}
+
+.datos-destacados {
+  background-color: #fffef6;
+  padding: 1rem;
+  border-left: 4px solid #9b7654;
+  margin: 1.25rem 0;
+  border-radius: 0.5rem;
+}
+
+/* Utilidad extra */
+.text-shadow {
+  text-shadow: 2px 2px 5px #000;
 }
